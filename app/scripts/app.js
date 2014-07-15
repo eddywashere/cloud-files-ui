@@ -15,7 +15,10 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'ui.bootstrap',
+    'ui.gravatar',
+    'templates-main'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -30,4 +33,12 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+  })
+  .config(function (gravatarServiceProvider) {
+    gravatarServiceProvider.defaults = {
+      size     : 200,
+      'default': 'mm'
+    };
+
+    gravatarServiceProvider.secure = true;
   });

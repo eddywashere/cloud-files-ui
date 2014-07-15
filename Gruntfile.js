@@ -1,8 +1,8 @@
 // Generated on 2014-07-12 using generator-angular 0.9.3
 'use strict';
 
-var fs = require('fs'),
-d = new Date();
+var fs = require('fs');
+// d = new Date();
 
 module.exports = function (grunt) {
 
@@ -187,16 +187,16 @@ module.exports = function (grunt) {
 
     html2js: {
       options: {
+        useStrict: true,
+        quoteChar: '\'',
         base: './app',
         rename: function(moduleName) {
-          return '/' + moduleName;
+          return moduleName;
         },
         htmlmin: {
           collapseBooleanAttributes: true,
-          collapseWhitespace: true,
-          removeAttributeQuotes: true,
-          removeComments: true,
-          removeEmptyAttributes: true,
+          collapseWhitespace: false,
+          removeCommentsFromCDATA: true
         }
       },
       main: {
@@ -209,7 +209,13 @@ module.exports = function (grunt) {
     wiredep: {
       app: {
         src: '<%= yeoman.app %>/**/*.ejs',
-        ignorePath: '<%= yeoman.app %>/'
+        ignorePath: /(\.\.\/){1,2}bower_components\//,
+        exclude: [
+          'json3',
+          'es5-shim',
+          'bootstrap-sass-official/assets/javascripts/bootstrap',
+          'jquery'
+        ]
       }
     },
 
@@ -249,7 +255,7 @@ module.exports = function (grunt) {
         src: [
           '<%= yeoman.dist %>/scripts/{,*/}*.js',
           '<%= yeoman.dist %>/styles/{,*/}*.css',
-          '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+          // '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}', // html2js issue
           '<%= yeoman.dist %>/styles/fonts/*'
         ]
       }
@@ -276,7 +282,11 @@ module.exports = function (grunt) {
 
     // Performs rewrites based on filerev and the useminPrepare configuration
     usemin: {
-      html: ['<%= yeoman.dist %>/{,*/}*.html', '<%= yeoman.dist %>/{,*/}*.ejs'],
+      html: [
+        '<%= yeoman.dist %>/{,*/}*.html',
+        '<%= yeoman.dist %>/{,*/}*.ejs',
+        '<%= yeoman.dist %>/scripts/views.js'
+      ],
       css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
       options: {
         assetsDirs: ['<%= yeoman.dist %>','<%= yeoman.dist %>/images']
@@ -463,6 +473,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'html2js',
       'wiredep',
       'concurrent:server',
       'autoprefixer',
