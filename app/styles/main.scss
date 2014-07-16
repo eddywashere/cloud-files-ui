@@ -62,3 +62,45 @@ form .alert {
   left: 15px;
   width: 42px;
 }
+
+// drag and drop styles
+
+.drop-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: transparent;
+  opacity: .4;
+  z-index: 1998;
+  display: none;
+  background: #333;
+}
+
+.drag-active .drop-wrapper {
+  display: block;
+}
+
+.drop-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2000;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+  outline: 0;
+  background: transparent;
+}
+
+.drop-message {
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  text-align: center;
+  height: 100px;
+  color: #fff;
+  z-index: 1999;
+}

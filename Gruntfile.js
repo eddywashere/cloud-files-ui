@@ -214,7 +214,8 @@ module.exports = function (grunt) {
           'json3',
           'es5-shim',
           'bootstrap-sass-official/assets/javascripts/bootstrap',
-          'jquery'
+          'jquery',
+          'cryptojslib'
         ]
       }
     },

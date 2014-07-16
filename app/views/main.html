@@ -1,7 +1,28 @@
-<h4>Angular</h4>
-<p>
-  <button popover-placement="top" popover="On the Top!" class="btn btn-default">Top</button>
-  <button popover-placement="left" popover="On the Left!" class="btn btn-default">Left</button>
-  <button popover-placement="right" popover="On the Right!" class="btn btn-default">Right</button>
-  <button popover-placement="bottom" popover="On the Bottom!" class="btn btn-default">Bottom</button>
-</p>
+<h3>Containers</h3>
+<div dnd>
+  <h2>drop it like it's hawt</h2>
+</div>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+        <th>Container Name</th>
+        <th>Region</th>
+        <th>Files</th>
+        <th>Size</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="c in containers">
+        <td></td>
+        <td>{{cdn[c.name].cdn_enabled || 'false'}}</td>
+        <td>{{c.name}}</td>
+        <td>{{region}}</td>
+        <td>{{c.count}}</td>
+        <td>{{c.bytes}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
