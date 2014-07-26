@@ -45,15 +45,20 @@ angular.module('cloudFilesUiApp')
     //   return Container.query(options).$promise;
     // };
 
-    CloudFiles.getContainers = function(region, container) {
+    // GRAB FILES BY DIR/ http://stackoverflow.com/questions/16227004/how-to-capture-urls-with-arbitrary-number-of-slashes-in-angular-js
+
+    CloudFiles.getContainers = function(options) {
       var cdnOptions,
-      requests = [],
-      options = {
-        region: region
-      };
-      if(container){
-        options.container = container;
+      requests = [];
+      if(options.container){
+        options.delimiter = '/';
       }
+      // options = {
+      //   region: region
+      // };
+      // if(container){
+      //   options.container = container;
+      // }
       requests.push(Container.query(options).$promise);
       cdnOptions = angular.copy(options);
       cdnOptions.cdn = 'CDN';

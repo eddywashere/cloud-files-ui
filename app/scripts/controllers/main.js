@@ -8,15 +8,20 @@
  * Controller of the cloudFilesUiApp
  */
 angular.module('cloudFilesUiApp')
-  .controller('MainCtrl', function ($scope, $http, CloudFiles) {
+  .controller('MainCtrl', function ($scope, $http, CloudFiles,
+      $route, $routeParams, $location) {
     $scope.$on('dragEnterEvent', function(){
       console.log('caught DRAG broadcasted from $rootScope');
     });
 
-    $scope.containers = [];
-    $scope.region = 'DFW';
+    $scope.$route = $route;
+    $scope.$location = $location;
+    $scope.$routeParams = $routeParams;
 
-    CloudFiles.getContainers($scope.region).then(function(data){
+    $scope.containers = [];
+    $scope.region = $route.current.params.region || 'ORD';
+
+    CloudFiles.getContainers($route.current.params).then(function(data){
       console.log(data[0]);
       $scope.containers = _.indexBy(data[0].values, 'name');
       $scope.cdn = _.indexBy(data[1].values, 'name');

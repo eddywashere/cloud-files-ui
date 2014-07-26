@@ -1,6 +1,13 @@
-<h3>Containers</h3>
+<h3 select-text>Containers</h3>
 <div dnd>
   <h2>drop it like it's hawt</h2>
+</div>
+<div>
+  <pre>$location.path() = {{$location.path()}}</pre>
+  <pre>$route.current.templateUrl = {{$route.current.templateUrl}}</pre>
+  <pre>$route.current.params = {{$route.current.params}}</pre>
+  <pre>$route.current.scope.name = {{$route.current.scope.name}}</pre>
+  <pre>$routeParams = {{$routeParams}}</pre>
 </div>
 <div class="table-responsive">
   <table class="table">
@@ -17,8 +24,8 @@
     <tbody>
       <tr ng-repeat="c in containers">
         <td></td>
-        <td>{{cdn[c.name].cdn_enabled || 'false'}}</td>
-        <td>{{c.name}}</td>
+        <td><i class="fa" ng-class="{'fa-globe': cdn[c.name].cdn_enabled, 'fa-cube': !cdn[c.name].cdn_enabled}"></i></td>
+        <td><a ng-href="#/{{region}}/{{c.name}}">{{c.name}}</a></td>
         <td>{{region}}</td>
         <td>{{c.count}}</td>
         <td>{{c.bytes}}</td>

@@ -22,16 +22,16 @@ angular
   ])
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/', {
+      .when('/containers', {
+        templateUrl: 'views/containers.html',
+        controller: 'ContainersCtrl'
+      })
+      .when('/:region/:container?/:path?', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
-      })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/containers'
       });
   })
   .config(function (gravatarServiceProvider) {
